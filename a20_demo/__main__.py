@@ -70,6 +70,74 @@ if __name__ == "__main__":
             # log position for future optional animation
             positions.append((sub.x, sub.y, getattr(sub, 'aim', None)))
 
+    dict = {}
+    with open('scanner-data.json', 'r') as f:
+        import json
+        dict = json.load(f)
+        # print(f"\nScanner Data: {dict}")
+
+    # for k, v in dict.items():
+    #     print(f"{k}: {v}")
+
+    positions2 = [(p[0], p[1]) for p in positions if len(p) > 2]  # filter out aim values for exercise 1
+    # print(positions2)
+
+    scanned_positions = {}
+    for k,v in dict.items():
+        for p in positions2:
+            if k == f"({p[0]},{p[1]})":
+                print(f"Match found for position {p}: {v}")
+                scanned_positions[p] = v
+
+    # TODO: use filter() to remove duplicates (if needed)
+    # print(f"Scanned Positions: {scanned_positions}")
+
+    map = {}
+    for k,v in scanned_positions.items():
+        for i in range(len(v)):
+            x, y = k
+            if i == 0:                
+                map[(x-1, y-1)] = v[i]  
+            elif i == 1:
+                map[(x, y-1)] = v[i]    
+            elif i == 2:
+                map[(x+1, y-1)] = v[i]                
+            elif i == 3:
+                map[(x-1, y)] = v[i]                
+            elif i == 4:
+                map[(x, y)] = v[i]
+            elif i == 5:
+                map[(x+1, y)] = v[i]                
+            elif i == 6:
+                map[(x-1, y+1)] = v[i]
+            elif i == 7:
+                map[(x,y+1)] = v[i]
+            elif i == 8:
+                map[(x+1, y+1)] = v[i]
+            else:
+                pass
+
+    max_x = max(map.keys(), key=lambda k: k[0])[0]
+    max_y = max(map.keys(), key=lambda k: k[1])[1]
+
+    print(f"Map Size: {max_x} x {max_y}")
+    
+    map_list = []
+    for y in range(max_y+1):
+        li = [' ' for  x in range(max_x+1)]
+        map_list.append(li)
+
+    # print(len(map_list), len(map_list[0]))
+
+    for k, v in map.items():
+        x, y = k
+        if 0 <= x <= max_x and 0 <= y <= max_y:
+            map_list[y][x] = v
+
+    print("Map:")
+    for row in map_list:
+        print(" ".join(row))        
+
     # print examlpe results if in test mode
     if input_file == 'example.txt':
         if args.exercise == 1:
@@ -93,7 +161,7 @@ if __name__ == "__main__":
             sys.exit(0)
 
         # add an element of chance to make it fun :)
-        if random.random() > 0.9:
+        if random.random() > 0.1:
             run_crazy_animation(positions)
         else:
             run_animation(positions)
