@@ -1,6 +1,6 @@
 # Augustwenty Submarine Adventure
 
-This collection of scripts allows a user to navigate the seas in their very own submarine. To get started, follow the steps below.
+This collection of scripts allows a user to navigate the seas in their very own submarine. The submarine is guided by inputs stored in ```input.txt``` (or ```example.txt``` for testing). The sub follows a different set of rules for each exercise, so read the instructions in ```docs/```. To get started, follow the steps below.
 
 1. install python3
 2. using your command line, navigate to the top level of this project directory
