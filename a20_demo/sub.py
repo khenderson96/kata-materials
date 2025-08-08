@@ -88,7 +88,6 @@ class SubmarineEx2(SubmarineParent):
     def down(self, value: int):
         self.aim += value
 
-
     def __repr__(self) -> str:
         return f"(x:{self.x}, y:{self.y}, a:{self.aim})"
 
@@ -107,9 +106,9 @@ if __name__ == "__main__":
     print(sub2)
 
     sub1_ex1 = SubmarineEx1()
-    sub2.forward(5)
-    sub2.down(3)
-    sub2.up(3)
+    sub1_ex1.forward(5)
+    sub1_ex1.down(3)
+    sub1_ex1.up(3)
     print(sub1_ex1)
 
     sub2_ex2 = SubmarineEx2()
