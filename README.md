@@ -13,6 +13,15 @@ This collection of scripts allows a user to navigate the seas in their very own 
 ```pip install -r requirements.txt```
 5. execute ```python a20_demo -h``` to see options. For example, run ```python a20_demo -e 2 -a``` to run example 2 with animation enabled.
 
+## Contents:
+- Options
+- Testing
+- Questions and Considerations
+- Architectural Reasoning and Analysis
+- Developmental timeline
+- Future improvements
+- Easter Egg
+
 ## Options
 The script can be executed in various modes
 ```
